@@ -22,9 +22,30 @@ To avoid extensive sub-voxel simulations for the effect of crusher gradients in 
 
 Instructions on how to use the code and replicate the experiments from the paper will be provided here once the repository is complete.
 
-## Contributions
+## Citation
 
-Contributions to this project are welcome. If you'd like to contribute, please follow the guidelines provided in the [CONTRIBUTING.md](CONTRIBUTING.md) file.
+If you find this paper helpful, please consider citing the following two papers:
+
+1. Original Paper: "Selective RF excitation designs enabled by time‐varying spatially non‐linear ΔB0 fields with applications in fetal MRI."
+- @article{zhang2022selective,
+  title={Selective RF excitation designs enabled by time-varying spatially non-linear $\Delta$ B 0 fields with applications in fetal MRI},
+  author={Zhang, Molin and Arango, Nicolas and Stockmann, Jason P and White, Jacob and Adalsteinsson, Elfar},
+  journal={Magnetic Resonance in Medicine},
+  volume={87},
+  number={5},
+  pages={2161--2177},
+  year={2022},
+  publisher={Wiley Online Library}
+}
+
+2. Extended Paper: "Stochastic‐offset‐enhanced restricted slice excitation and 180° refocusing designs with spatially non‐linear ΔB0 shim array fields."
+- @article{zhang2023stochastic,
+  title={Stochastic-offset-enhanced restricted slice excitation and 180° refocusing designs with spatially non-linear $\Delta$B0 shim array fields},
+  author={Zhang, Molin and Arango, Nicolas and Arefeen, Yamin and Guryev, Georgy and Stockmann, Jason P and White, Jacob and Adalsteinsson, Elfar},
+  journal={Magnetic Resonance in Medicine},
+  year={2023},
+  publisher={Wiley Online Library}
+}
 
 ## License
 
