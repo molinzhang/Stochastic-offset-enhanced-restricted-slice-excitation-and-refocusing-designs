@@ -6,9 +6,6 @@ IniVar1 = matfile('/home/molin/shimm_nick/decompose_refocus/demo/IniVars.mat');
 IniVar1.Properties.Writable = true;
 IniVar2 = matfile('/home/molin/shimm_nick/decompose_refocus/demo/IniVars.mat');
 IniVar2.Properties.Writable = true;
-%IniVar3 = matfile('/home/molin/shimm_nick/decompose_refocus/demo/IniVars.mat');
-%IniVar3.Properties.Writable = true;
-
 
 %%
 %%% this is a much complicated way to rebuild the CUBE. The class SpinCube
@@ -19,7 +16,6 @@ IniVar2.Properties.Writable = true;
 cube = IniVar.cube;
 cube1 = IniVar1.cube;
 cube2 = IniVar2.cube;
-cube3 = IniVar3.cube;
 
 %% for the first cube
 %MASK1 = load('/home/molin/shimm_nick/decompose_refocus/demo/ISMRM/compare/Mask_sagital_pregnancy_small.mat'); %r7mask.mat;%Mask_checkslice.mat');%MASK_12mmROI_slice.mat');%Mask_pregnancy_ismrm2022.mat'); %; % %% MASK
@@ -219,66 +215,6 @@ CUBE2.gam_(:,1) = gamma;
 %gamma : Hz/Gauss
 
 cube2 = CUBE2;
-
-%%
-%%% for test
-%MASK1 = load('/home/molin/shimm_nick/Dynamic_resemble/demo/ISMRM/compare/masks_slice.mat'); %% MASK
-%MASK2 = MASK1.Target;
-%%MASK2 = ones(size(MASK2));
-%MASK = MASK2; %logical(ones(size(MASK1)));
-%CUBE3 = cube3;
-
-%CUBE3.mask = logical(MASK);
-%CUBE3.nM = sum(sum(sum(MASK)));
-
-%CUBE3.dim = size(MASK);
-%CUBE3.fov = [36, 36, 24];
-
-%b0Map = nan(CUBE3.dim);
-%b0Map(MASK == 1) = - 460.0 * 10; %- 4 * 1.2 * 0.48933 * 42.58 * 10 * 1.8; %-48 * 4 * 0.7242 / 4  *9.5 * 42.58 ;%; %-1035 - 650; %+ rand(CUBE.nM,1)* 10 ; %300 for ismrm
-%b0Map(MASK == 1) = b0Map(MASK == 1) +50;
-%CUBE3.b0Map_ = b0Map(MASK == 1); 
-%CUBE3.b0Map = b0Map;
-%[Xv, Yv, Zv] = meshgrid(-18:CUBE3.res(1):17.99, -18:CUBE3.res(2):17.99, -12:CUBE3.res(3):11.99);
-%CUBE3.loc = nan([CUBE3.dim 3]);
-
-%inter = CUBE3.loc(:,:,:,1);
-%inter(MASK == 1) = Xv(MASK ==1);
-%CUBE3.loc(:,:,:,1) = inter;
-%inter = CUBE3.loc(:,:,:,2);
-%inter(MASK == 1) = Yv(MASK ==1);
-%CUBE3.loc(:,:,:,2) = inter;
-%inter = CUBE3.loc(:,:,:,3);
-%inter(MASK == 1) = Zv(MASK ==1);
-%CUBE3.loc(:,:,:,3) = inter;
-%CUBE3.loc_ =  [Xv(MASK ==1), Yv(MASK== 1), Zv(MASK ==1)];
-
-%Mag = zeros(([CUBE3.dim 3]));
-%mag = Mag(:,:,:,3);
-%mag(MASK == 1) = 1;
-%Mag(:,:,:,1) = mag;
-%CUBE3.M = Mag;
-%mag1= Mag(:,:,:,1);
-%mag2 = Mag(:,:,:,2);
-%mag3 = Mag(:,:,:,3);
-
-
-%mag1(19,:,:) = -1 + 2*rand(30,20);
-%mag2(19,:,:) = (-1 + 2* randi([0 1], 30, 20)) .* squeeze(sqrt(1 - mag1(19,:,:).^2));
-%CUBE3.M_ = [mag1(MASK ==1), mag2(MASK ==1), mag3(MASK == 1)];
-%%%% assume T1, T2, gamma is all the same;
-%T1 = CUBE3.T1_(1); T2 = CUBE3.T2_(1); gamma = CUBE3.gam_(1);
-%CUBE3.T1_ = zeros(CUBE3.nM,1);
-%CUBE3.T1_(:,1) = T1;
-%CUBE3.T2_ = zeros(CUBE3.nM,1);
-%CUBE3.T2_(:,1) = T2;
-%CUBE3.gam_ = zeros(CUBE3.nM,1);
-%CUBE3.gam_(:,1) = gamma;
-
-%%gamma : Hz/Gauss
-
-%cube3 = CUBE3;
-
 
 %%
 IniVar.cube = CUBE;
