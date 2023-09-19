@@ -317,104 +317,12 @@ IniVar.pIni_OV90 = kk;
 
 pAD = OV90(cube, cube1, cube2, IniVar.target_OV90, IniVar.pIni_OV90);
 
-%IV180(cube, IniVmask_out(mask_out > 0.000001) = 1;ar.target_IV180, IniVar.pIni_IV180);
-
-%IV180M(cube, IniVar.target_IV180M, IniVar.pIni_IV180M);
-
 end
 
 function pAD = OV90(cube, cube1, cube2, target, pIni)
   pAD = adpulses.opt.arctanAD(target, cube, cube1, cube2, pIni, 'err_meth', 'l2xy' ...
                            , 'doClean',false, 'gpuID',0);
 
-  figure 
-  plot_res(pIni, pAD, cube, target, 'xy');
-  plot_res(pIni, pAD, cube1, target, 'xy');
-  %plot_res(pIni, pAD, cube2, target, 'xy');
-  %suptitle('OV90');
 end
 
-function IV180(cube, target, pIni)
-  %pAD = adpulses.opt.arctanAD(target, cube, pIni, 'err_meth', 'l2z' ...
-  %                            , 'doClean',false, 'gpuID',0);
-   
-  %figure
-  plot_res(pIni, PIni, cube, target, 'z');
-  suptitle('IV180');
-end
-
-function IV180M(cube, target, pIni)
-  pAD = adpulses.opt.arctanAD(target, cube, pIni, 'err_meth', 'l2z' ...
-                              , 'doClean',false, 'gpuID',0);
- 
-  figure
-  plot_res(pIni, pAD, cube, target, 'z');
-  suptitle('IV180M');
-end
-
-%% Utils
-function plot_res(p1, p2, cube, target, xy_z) 
-  fn_sim1 = @(p)cube.applypulse(p, 'doCim',true, 'doEmbed',true, 'b1Map_', 0.9 + 0.05 * rand(cube.nM,1));
-  fn_sim = @(p)cube.applypulse(p, 'doCim',true, 'doEmbed',true);
-  [MT_1, MT_2] = deal(fn_sim(p1), fn_sim(p2));
-  
-  if strcmpi(xy_z, 'xy')
-    % xy component and transversal MLS NRMSE
-    fn_res = @(MT)MT(:,:,:,1) + 1i*MT(:,:,:,2);
-    fn_tile = @(P)abs(tile3dto2d(P));
-    cl_res = [0, 1];
-  elseif strcmpi(xy_z, 'z')
-    % z component and longitudinal LS NRMSE
-    fn_res = @(MT)MT(:,:,:,3);
-    fn_tile = @(P)tile3dto2d(P);
-    cl_res = [-1, 1];
-  else, error('Unknown xy_z type');
-  end
-  
-  d = fn_res(target.d);
-  d(cube.mask == 0) = nan;
-  %[MT_1, MT_2] = deal(fn_res(MT_1), fn_res(MT_2));
-  MT_1 = MT_2(:,:,:,1);
-  MT_2 = MT_2(:,:,:,2);
-  cl_res = [-1,1];
-  %MT_2 = MT_2 .* target.d(:,:,:,1);
-  %d(isnan(d)) = -1;
-  %MT_1(isnan(MT_1)) = -1;
-  
-  
-  AAA = abs(MT_2((cube.mask == 1) & (target.d(:,:,:,1) == 1)));
-  BBB = abs(MT_2((cube.mask == 1) & (target.d(:,:,:,1) == 0)));
-  
-  min_AAA = min(min(AAA));
-  max_BBB = max(max(BBB));
-  
-  %loss seperately
-  TAR = target.d(:,:,:,1);
-  loss_i = norm(BBB - TAR((cube.mask == 1)&(TAR == 0))) ^2;
-  
-  % reshapes
-  [d, MT_1, MT_2] = deal(fn_tile(d), fn_tile(MT_1), fn_tile(MT_2));
-  
-  %subplot(131);
-  %imagesc(d); colorbar;
-  %caxis(cl_res); axis('equal'); pbaspect([1,1,1]); title('target');
-  
-  subplot(121);
-  imagesc(MT_1); colorbar;
-  caxis(cl_res); axis('equal'); pbaspect([1,1,1]); title('Uniform B1+');
-
-  subplot(122);
-  imagesc(MT_2); colorbar;
-  caxis(cl_res); axis('equal'); pbaspect([1,1,1]); title('Random B1+');
-end
-
-function P = tile3dto2d(P)
-  [nx, ny, nz] = size(P);
-  nz_rt = sqrt(nz);
-  [nc, nr] = deal(ceil(nz_rt), floor(nz_rt));
-  nc = 10; nr = 6;
-  P = cat(3, P, zeros([nx, ny, nr*nc-nz])); % -> (nx, ny, nc*nr)
-  P = reshape(P, nx, ny*nc, []); % -> (nx, nc*ny, nr)
-  P = reshape(permute(P, [2, 1, 3]), ny*nc, nx*nr).'; % -> (nr*nx, nc*ny);
-end
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
