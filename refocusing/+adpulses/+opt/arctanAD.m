@@ -7,8 +7,9 @@ function [pulse_o, optInfos] = arctanAD(target, cube, cube1, cube2, pulse_i, var
 % - target (1,) structure:
 %   .d (*Nd, xyz)
 %   .weight (*Nd)
-% - cube mrphy.@SpinCube obj
+% - cube mrphy.@SpinCube obj. cube cube1 cube2 corresponds to initialization magentiztaion Mx = 1, My = 1 and Mz = 1, respectively.
 % - pulse_i mrphy.@Pulse obj
+
 %OPTIONAL
 % - b1Map (*Nd, nCoils)
 % - niter (1,), dflt 10, #iteration in autodiff
@@ -32,7 +33,7 @@ import attr.*
 
 % parse
 arg.b1Map = [];
-[arg.niter, arg.niter_gr, arg.niter_rf] = deal(1, 0, 80); % 300, 2, 2
+[arg.niter, arg.niter_gr, arg.niter_rf] = deal(30, 2, 2);
 arg.err_meth = 'l2xy';
 [arg.pen_meth, arg.eta] = deal('l2', 1); % 0.5
 arg.gpuID = 0;
