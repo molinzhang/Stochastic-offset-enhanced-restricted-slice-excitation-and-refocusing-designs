@@ -22,6 +22,13 @@ To avoid extensive sub-voxel simulations for the effect of crusher gradients in 
 
 The code is modified and derived from [AutoDiffPulses](https://github.com/tianrluo/AutoDiffPulses) which provides the optimization framework for RF pulse and B0 fields (linear gradient fields and shim array fields) with auto-differentiation.
 
+We followed the same manner of [AutoDiffPulses](https://github.com/tianrluo/AutoDiffPulses). The actual optimization part is performed with Pytorch and wrapped with MATLAB.
+
+### Key features for usage.
+
+In `+mrphy/+beffective/rfgr2beff.m`, if you want to 
+
+
 
 ## Citation
 
