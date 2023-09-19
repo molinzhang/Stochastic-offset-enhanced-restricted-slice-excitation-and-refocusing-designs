@@ -8,7 +8,7 @@ The code in this repository is based on and extends the work presented in anothe
 
 ### 1. Stochastic Offset Strategy
 
-We have adopted a stochastic offset strategy to address the 'fixed-point' artifacts that can arise during the optimization of fixed points in the magnetization profile.
+We have adopted a stochastic offset strategy to address the 'fixed-point' artifacts in the resultant magnetization profile that can arise as a result of performing optimizations on fixed points as the spatial locations.
 
 ### 2. Refocusing Designs
 
