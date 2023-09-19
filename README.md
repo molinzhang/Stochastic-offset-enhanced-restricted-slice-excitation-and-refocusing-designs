@@ -20,7 +20,8 @@ To avoid extensive sub-voxel simulations for the effect of crusher gradients in 
 
 ## Usage
 
-Instructions on how to use the code and replicate the experiments from the paper will be provided here once the repository is complete.
+The code is modified and derived from [AutoDiffPulses](https://github.com/tianrluo/AutoDiffPulses) which provides the optimization framework for RF pulse and B0 fields (linear gradient fields and shim array fields) with auto-differentiation.
+
 
 ## Citation
 
