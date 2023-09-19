@@ -3,7 +3,8 @@
 import torch
 import os
 from adpulses_refoc import io, optimizers, metrics, penalties
-os.environ["CUDA_VISIBLE_DEVICES"] = "1"
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+
 if __name__ == "__main__":
     import sys
 
