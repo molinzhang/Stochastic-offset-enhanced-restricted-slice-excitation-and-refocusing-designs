@@ -28,6 +28,10 @@ We followed the same manner of [AutoDiffPulses](https://github.com/tianrluo/Auto
 
 Our work enables both excitation and refocusing designs by optimizing Rf pulse and time-varying $\Delta B_0$ shim array fields. Note that we used additional linear gradient fields but fixed them during the optimization. Optimizing linear gradient fields yields worse results. 
 
+For excitation, we propose a two-stage optimization strategy. please first use codes under folder `excitation` to optimize RF pulse and $\Delta B_0$ get desired magnitude of excited magnetizations without considering phase distributions. Next, please use the codes under folder `rewinding` to rewind the phase of excited magnetizations. Load optimized RF pulse and $\Delta B_0$ fields from the first stage in the right place. Note that only $\Delta B_0$ fields are optimized and RF pulse is set to zero. For more details, please check our paper.
+
+For refocusing, please first use codes under folder `refocusing` to optimize RF pulse and $\Delta B_0$ get desired refocusing magentization.
+
 ### Key features for usage.
 
 In `+mrphy/+beffective/rfgr2beff.m`, if you want to 
