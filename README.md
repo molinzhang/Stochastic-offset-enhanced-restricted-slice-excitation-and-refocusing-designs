@@ -27,7 +27,7 @@ Instructions on how to use the code and replicate the experiments from the paper
 If you find this paper helpful, please consider citing the following two papers:
 
 1. Original Paper: "Selective RF excitation designs enabled by time‐varying spatially non‐linear ΔB0 fields with applications in fetal MRI."
-```
+```bibtex
 @article{zhang2022selective,
   title={Selective RF excitation designs enabled by time-varying spatially non-linear $\Delta$ B 0 fields with applications in fetal MRI},
   author={Zhang, Molin and Arango, Nicolas and Stockmann, Jason P and White, Jacob and Adalsteinsson, Elfar},
@@ -41,7 +41,7 @@ If you find this paper helpful, please consider citing the following two papers:
 ```
 
 2. Extended Paper: "Stochastic‐offset‐enhanced restricted slice excitation and 180° refocusing designs with spatially non‐linear ΔB0 shim array fields."
-```
+```bibtex
 @article{zhang2023stochastic,
   title={Stochastic-offset-enhanced restricted slice excitation and 180° refocusing designs with spatially non-linear $\Delta$B0 shim array fields},
   author={Zhang, Molin and Arango, Nicolas and Arefeen, Yamin and Guryev, Georgy and Stockmann, Jason P and White, Jacob and Adalsteinsson, Elfar},
