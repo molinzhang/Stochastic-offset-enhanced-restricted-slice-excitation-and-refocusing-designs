@@ -1,6 +1,8 @@
 # Stochastic-offset-enhanced-restricted-slice-excitation-and-refocusing-designs
 
-This repository contains the official code for the MRM paper titled ["Stochastic‐offset‐enhanced restricted slice excitation and 180° refocusing designs with spatially non‐linear ΔB0 shim array fields"](https://onlinelibrary.wiley.com/doi/full/10.1002/mrm.29827). The code in this repository is based on and extends the work presented in another MRM paper titled ["Selective RF excitation designs enabled by time‐varying spatially non‐linear ΔB0 fields with applications in fetal MRI."](https://onlinelibrary.wiley.com/doi/full/10.1002/mrm.29114) Please note that this repository is currently under construction.
+This repository contains the official code for the MRM paper titled ["Stochastic‐offset‐enhanced restricted slice excitation and 180° refocusing designs with spatially non‐linear ΔB0 shim array fields"](https://onlinelibrary.wiley.com/doi/full/10.1002/mrm.29827). 
+
+The code in this repository is based on and extends the work presented in another MRM paper titled ["Selective RF excitation designs enabled by time‐varying spatially non‐linear ΔB0 fields with applications in fetal MRI."](https://onlinelibrary.wiley.com/doi/full/10.1002/mrm.29114) Please note that this repository is currently under construction.
 
 ## About the Paper
 
@@ -23,6 +25,8 @@ To avoid extensive sub-voxel simulations for the effect of crusher gradients in 
 The code is modified and derived from [AutoDiffPulses](https://github.com/tianrluo/AutoDiffPulses) which provides the optimization framework for RF pulse and B0 fields (linear gradient fields and shim array fields) with auto-differentiation.
 
 We followed the same manner of [AutoDiffPulses](https://github.com/tianrluo/AutoDiffPulses). The actual optimization part is performed with Pytorch and wrapped with MATLAB.
+
+Our work enables both excitation and refocusing designs by optimizing Rf pulse and time-varying $\Delta B_0$ shim array fields. Note that we used additional linear gradient fields but fixed them during the optimization. Optimizing linear gradient fields yields worse results. 
 
 ### Key features for usage.
 
