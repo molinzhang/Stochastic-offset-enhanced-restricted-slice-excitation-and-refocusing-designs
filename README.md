@@ -1,10 +1,10 @@
 # Stochastic-offset-enhanced-restricted-slice-excitation-and-refocusing-designs
 
-This repository contains the official code for the MRM paper titled "Stochastic‐offset‐enhanced restricted slice excitation and 180° refocusing designs with spatially non‐linear ΔB0 shim array fields". Please note that this repository is currently under construction.
+This repository contains the official code for the MRM paper titled ["Stochastic‐offset‐enhanced restricted slice excitation and 180° refocusing designs with spatially non‐linear ΔB0 shim array fields"](https://onlinelibrary.wiley.com/doi/full/10.1002/mrm.29827). The code in this repository is based on and extends the work presented in another MRM paper titled ["Selective RF excitation designs enabled by time‐varying spatially non‐linear ΔB0 fields with applications in fetal MRI."](https://onlinelibrary.wiley.com/doi/full/10.1002/mrm.29114) Please note that this repository is currently under construction.
 
 ## About the Paper
 
-The code in this repository is based on and extends the work presented in another MRM paper titled "Selective RF excitation designs enabled by time‐varying spatially non‐linear ΔB0 fields with applications in fetal MRI." The paper is divided into three key parts:
+The main contributions of this paper are summarized into three key parts:
 
 ### `1. Stochastic Offset Strategy`
 
