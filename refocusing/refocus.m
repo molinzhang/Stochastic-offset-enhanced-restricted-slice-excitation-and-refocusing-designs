@@ -6,8 +6,8 @@ IniVar1 = matfile('/home/molin/shimm_nick/decompose_refocus/demo/IniVars.mat');
 IniVar1.Properties.Writable = true;
 IniVar2 = matfile('/home/molin/shimm_nick/decompose_refocus/demo/IniVars.mat');
 IniVar2.Properties.Writable = true;
-IniVar3 = matfile('/home/molin/shimm_nick/decompose_refocus/demo/IniVars.mat');
-IniVar3.Properties.Writable = true;
+%IniVar3 = matfile('/home/molin/shimm_nick/decompose_refocus/demo/IniVars.mat');
+%IniVar3.Properties.Writable = true;
 
 
 %%
