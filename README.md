@@ -6,15 +6,15 @@ This repository contains the official code for the MRM paper titled "Stochastic�
 
 The code in this repository is based on and extends the work presented in another MRM paper titled "Selective RF excitation designs enabled by time‐varying spatially non‐linear ΔB0 fields with applications in fetal MRI." The paper is divided into three key parts:
 
-`### 1. Stochastic Offset Strategy`
+### `1. Stochastic Offset Strategy`
 
 We have adopted a stochastic offset strategy to address the 'fixed-point' artifacts in the resultant magnetization profile that can arise as a result of performing optimizations on fixed points as the spatial locations.
 
-`### 2. Refocusing Designs`
+### `2. Refocusing Designs`
 
 Our work enables refocusing designs through the utilization of the decomposition property of the Bloch equation.
 
-`### 3. Equivalent Crusher Gradient Formula`
+### `3. Equivalent Crusher Gradient Formula`
 
 To avoid extensive sub-voxel simulations for the effect of crusher gradients in refocusing designs, we have incorporated an equivalent crusher gradient formula into the loss function.
 
