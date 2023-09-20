@@ -25,12 +25,12 @@ To avoid extensive sub-voxel simulations for the effect of crusher gradients in 
 The code is modified and derived from [AutoDiffPulses](https://github.com/tianrluo/AutoDiffPulses) which provides the optimization framework for RF pulse and B0 fields (linear gradient fields and shim array fields) with auto-differentiation.
 
 We followed the same manner of [AutoDiffPulses](https://github.com/tianrluo/AutoDiffPulses). The actual optimization part is performed with Pytorch and wrapped with MATLAB.
-
+  
 Our work enables both excitation and refocusing designs by optimizing Rf pulse and time-varying $\Delta B_0$ shim array fields. Note that we used additional linear gradient fields but fixed them during the optimization. Optimizing linear gradient fields yields worse results. 
 
-For excitation, we propose a two-stage optimization strategy. please first use codes under folder `excitation` to optimize RF pulse and $\Delta B_0$ get desired magnitude of excited magnetizations without considering phase distributions. Next, please use the codes under folder `rewinding` to rewind the phase of excited magnetizations. Load optimized RF pulse and $\Delta B_0$ fields from the first stage in the right place. Note that only $\Delta B_0$ fields are optimized and RF pulse is set to zero. For more details, please check our paper.
+For excitation, we propose a two-stage optimization strategy. please first use codes under folder `excitation` to optimize RF pulse and shim current get desired magnitude of excited magnetizations without considering phase distributions. Next, please use the codes under folder `rewinding` to rewind the phase of excited magnetizations. Load optimized RF pulse and shim current from the first stage in the right place. Note that only shim current are optimized and RF pulse is set to zero for the rewinding stage. For more details, please check our paper.
 
-For refocusing, please first use codes under folder `refocusing` to optimize RF pulse and $\Delta B_0$ get desired refocusing magentization.
+For refocusing, please first use codes under folder `refocusing` to optimize RF pulse and shim current get desired refocusing magentization.
 
 ### Key features for usage.
 
