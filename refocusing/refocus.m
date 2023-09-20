@@ -1,10 +1,10 @@
 function pAD = refocus()
 clear
-IniVar = matfile('/home/molin/shimm_nick/decompose_refocus/demo/IniVars.mat');
+IniVar = matfile('./IniVars.mat');
 IniVar.Properties.Writable = true;
-IniVar1 = matfile('/home/molin/shimm_nick/decompose_refocus/demo/IniVars.mat');
+IniVar1 = matfile('./IniVars.mat');
 IniVar1.Properties.Writable = true;
-IniVar2 = matfile('/home/molin/shimm_nick/decompose_refocus/demo/IniVars.mat');
+IniVar2 = matfile('./IniVars.mat');
 IniVar2.Properties.Writable = true;
 
 %%
