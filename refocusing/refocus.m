@@ -8,17 +8,13 @@ IniVar2 = matfile('./IniVars.mat');
 IniVar2.Properties.Writable = true;
 
 %%
-%%% this is a much complicated way to rebuild the CUBE. The class SpinCube
-%%% and SpinArray could do this automatically by the property and function
-%%% bewtween public/dependent and compact properties. I modify them into
-%%% all public property. But some of them still use the function of
-%%% automatically cacultation from M_, mask to M. Modify this after ISMRM.
 cube = IniVar.cube;
 cube1 = IniVar1.cube;
 cube2 = IniVar2.cube;
 
 %% for the first cube
-MASK1 = load('/home/molin/shimm_nick/op_rewind/MASK_z.mat');
+% load your own binary mask. It should have -TAR: target ROI. -MASK: target ROI + background. Alias de-selecting method is recommended for cartesian sampling.
+MASK1 = load('./mask.mat'); 
 MASK2 = MASK1.Mask;
 MASK = MASK2; %logical(ones(size(MASK1)));
 
