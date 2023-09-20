@@ -18,39 +18,24 @@ cube1 = IniVar1.cube;
 cube2 = IniVar2.cube;
 
 %% for the first cube
-%MASK1 = load('/home/molin/shimm_nick/decompose_refocus/demo/ISMRM/compare/Mask_sagital_pregnancy_small.mat'); %r7mask.mat;%Mask_checkslice.mat');%MASK_12mmROI_slice.mat');%Mask_pregnancy_ismrm2022.mat'); %; % %% MASK
-%MASK1 = load('/home/mmatlaolin/shimm_nick/decompose_refocus/demo/ISMRM/compare/phantom_3mm_mask_x_noshift.mat');
 MASK1 = load('/home/molin/shimm_nick/op_rewind/MASK_z.mat');
-MASK2 = MASK1.Mask; %Mask;%.Target;
-%MASK2 = ones(size(MASK2));
-%MASK = zeros(size(MASK2));
-
-%MASK(19, 15, 10) = MASK2(19, 15 ,10);
-
-%load('/home/molin/shimm_nick/op_rewind/fullmask.mat')
-%MASK2 = D1;
+MASK2 = MASK1.Mask;
 MASK = MASK2; %logical(ones(size(MASK1)));
 
-
-%MASK = ones(size(MASK));
 CUBE = cube;
 
 CUBE.mask = logical(MASK);
 CUBE.nM = sum(sum(sum(MASK)));
 
 CUBE.dim = size(MASK);
-CUBE.fov = [0.4091*3, 0.4091*3, 24];%[36,36,24]; %[21, 21, 15];
+CUBE.fov = [36,36,24];
 
 b0Map = nan(CUBE.dim);
-b0Map(MASK == 1) = 0;%-100; %-80; %- 460.0 * 8 - 60; 
-%b0Map(MASK == 1) = b0Map(MASK == 1) +50;
+b0Map(MASK == 1) = 0;
 CUBE.b0Map_ = b0Map(MASK == 1); 
 CUBE.b0Map = b0Map;
-%[Xv, Yv, Zv] = meshgrid(-18:CUBE.res(1):17.99, -18:CUBE.res(2):17.99, -12:CUBE.res(3):11.99);
-[Xv, Yv, Zv] = meshgrid(-0.8178:CUBE.res(1):0.0004, -0.8178:CUBE.res(2):0.0004, -12:CUBE.res(3):11.99);
-%%% need to think about it more. Currently, Mask(:,45,31) = 1. But this
-%%% corresponds to the change in Yv.
-%[Xv, Yv, Zv] = meshgrid(-10.5:CUBE.res(1):10.49, -10.5:CUBE.res(2):10.49, -7.5:CUBE.res(3):7.49);
+[Xv, Yv, Zv] = meshgrid(-18:CUBE.res(1):17.99, -18:CUBE.res(2):17.99, -12:CUBE.res(3):11.99);
+
 CUBE.loc = nan([CUBE.dim 3]);
 
 inter = CUBE.loc(:,:,:,1);
@@ -73,9 +58,6 @@ mag1= Mag(:,:,:,1);
 mag2 = Mag(:,:,:,2);
 mag3 = Mag(:,:,:,3);
 
-%mag1(19,:,:) = 1;
-%mag3(19,:,:) = 0;
-
 CUBE.M_ = [mag1(MASK ==1), mag2(MASK ==1), mag3(MASK == 1)];
 %%% assume T1, T2, gamma is all the same;
 T1 = CUBE.T1_(1); T2 = CUBE.T2_(1); gamma = CUBE.gam_(1);
@@ -91,20 +73,16 @@ CUBE.gam_(:,1) = gamma;
 cube = CUBE;
 
 %% for the second cube
-MASK2 = MASK1.Mask;%Mask; %.Target;
-%MASK2 = ones(size(MASK2));
-%MASK = zeros(size(MASK2));
-%MASK(19,15,10) = MASK2(19,15,10);
-%load('/home/molin/shimm_nick/op_rewind/fullmask.mat')
-%MASK2 = D1;
+MASK2 = MASK1.Mask;
+
 MASK = MASK2; %logical(ones(size(MASK1)))
-%MASK = ones(size(MASK));
+
 CUBE1 = cube1;
 CUBE1.mask = logical(MASK);
 CUBE1.nM = sum(sum(sum(MASK)));
 
 CUBE1.dim = size(MASK);
-CUBE1.fov = [0.4091*3, 0.4091*3, 24];%[36, 36, 24];%[21, 21, 15]; % 36, 36, 24
+CUBE1.fov = [36, 36, 24];
 
 b0Map = nan(CUBE1.dim);
 b0Map(MASK == 1) =0; %-100; %-460 * 8 -60; %-80; %; 
