@@ -85,13 +85,10 @@ CUBE1.dim = size(MASK);
 CUBE1.fov = [36, 36, 24];
 
 b0Map = nan(CUBE1.dim);
-b0Map(MASK == 1) =0; %-100; %-460 * 8 -60; %-80; %; 
-%b0Map(MASK == 1) = b0Map(MASK == 1) +50;
+b0Map(MASK == 1) =0;
 CUBE1.b0Map_ = b0Map(MASK == 1); 
 CUBE1.b0Map = b0Map;
-%[Xv, Yv, Zv] = meshgrid(-18:CUBE1.res(1):17.99, -18:CUBE1.res(2):17.99, -12:CUBE1.res(3):11.99);
-[Xv, Yv, Zv] = meshgrid(-0.8178:CUBE.res(1):0.0004, -0.8178:CUBE.res(2):0.0004, -12:CUBE.res(3):11.99);
-%[Xv, Yv, Zv] = meshgrid(-10.5:CUBE1.res(1):10.49, -10.5:CUBE1.res(2):10.49, -7.5:CUBE1.res(3):7.49);
+[Xv, Yv, Zv] = meshgrid(-18:CUBE1.res(1):17.99, -18:CUBE1.res(2):17.99, -12:CUBE1.res(3):11.99);
 CUBE1.loc = nan([CUBE1.dim 3]);
 
 inter = CUBE1.loc(:,:,:,1);
@@ -114,9 +111,6 @@ mag1= Mag(:,:,:,1);
 mag2 = Mag(:,:,:,2);
 mag3 = Mag(:,:,:,3);
 
-%mag2(19,:,:) = 1;
-%mag3(19,:,:) = 0;
-
 CUBE1.M_ = [mag1(MASK ==1), mag2(MASK ==1), mag3(MASK == 1)];
 %%% assume T1, T2, gamma is all the same;
 T1 = CUBE1.T1_(1); T2 = CUBE1.T2_(1); gamma = CUBE1.gam_(1);
@@ -130,34 +124,25 @@ CUBE1.gam_(:,1) = gamma;
 %gamma : Hz/Gauss
 
 cube1 = CUBE1;
+
 %% for the third cube, excitation now
 MASK2 = MASK1.Mask;
-%MASK2 = ones(size(MASK2));
-%MASK = zeros(size(MASK2));
-%MASK(MASK2 == 1) = 1;
-%sliceS = MASK(19,:,:);
-%sliceS(sliceS == 1) = 0;
-%MASK(19,:,:) = sliceS;
 MASK = logical(MASK2); %logical(ones(size(MASK1)))
-%MASK(19,:,:) = 0;
 CUBE2 = cube2;
-%t = MASK1.Target;
-%MASK(t == 1) = 0;
+
 
 CUBE2.mask = logical(MASK);
 CUBE2.nM = sum(sum(sum(MASK)));
 
 CUBE2.dim = size(MASK);
-CUBE2.fov = [0.4091*3, 0.4091*3, 24];%[36, 36, 24];%[21, 21, 15];%[36, 36, 24];
+CUBE2.fov = [36, 36, 24];
 
 b0Map = nan(CUBE2.dim);
 b0Map(MASK == 1) = 0; %-100; %-460 * 8 -60; %-80%- 4 * 1.2 * 0.48933 * 42.58 * 10 * 1.8; %-48 * 4 * 0.7242 / 4  *9.5 * 42.58 ;%; %-1035 - 650; %+ rand(CUBE.nM,1)* 10 ; %300 for ismrm
-%b0Map(MASK == 1) = b0Map(MASK == 1) +50;
+
 CUBE2.b0Map_ = b0Map(MASK == 1); 
 CUBE2.b0Map = b0Map;
-%[Xv, Yv, Zv] = meshgrid(-18:CUBE2.res(1):17.99, -18:CUBE2.res(2):17.99, -12:CUBE2.res(3):11.99);
-[Xv, Yv, Zv] = meshgrid(-0.8178:CUBE.res(1):0.0004, -0.8178:CUBE.res(2):0.0004, -12:CUBE.res(3):11.99);
-%[Xv, Yv, Zv] = meshgrid(-10.5:CUBE2.res(1):10.49, -10.5:CUBE2.res(2):10.49, -7.5:CUBE2.res(3):7.49); %meshgrid(-18:CUBE2.res(1):17.99, -18:CUBE2.res(2):17.99, -12:CUBE2.res(3):11.99);
+[Xv, Yv, Zv] = meshgrid(-18:CUBE2.res(1):17.99, -18:CUBE2.res(2):17.99, -12:CUBE2.res(3):11.99);
 CUBE2.loc = nan([CUBE2.dim 3]);
 
 inter = CUBE2.loc(:,:,:,1);
@@ -200,9 +185,7 @@ IniVar.cube = CUBE;
 %%modify target and pulse
  
 Target = IniVar.target_OV90;
-%load('r_4balltarget.mat');
 TAR = double(MASK1.Target);
-
 TAR_all = double(MASK1.Mask);
 
 
@@ -211,13 +194,14 @@ TAR_all = double(MASK1.Mask);
 
 TAR_refo = TAR_all;
 TAR_refo(TAR == 1) = -1;
-%TAR_refo(16, :, :) = -1;
 
 Target.d = cat(4, TAR_all, zeros(size(TAR)), 1 - TAR_all); %Target for Mx: (1,0,0) -> (1,0,0)
 Target.d1 = cat(4, zeros(size(TAR)), TAR_refo, 1 - TAR_all); %Target for My: (0,1,0) -> (0,-1,0)
 %Target.d2 = cat(4, zeros(size(TAR)), zeros(size(TAR)), -ones(size(TAR))); %Target for Mz: (0,0,1) -> (0,0,+1/-1)
 Target.d2 = cat(4, zeros(size(TAR)), TAR, 1 - TAR);
 
+
+% %% Assign different weights for different locations.
 % Mask_weight = double(MASK);
 % Slice_of_interest = squeeze(Mask_weight(45,:,:)); % 19, 44
 % Slice_of_interest(Slice_of_interest == 1) = 1.1;%1.1; %2;
@@ -249,49 +233,33 @@ Ex_mask(TAR == 1) = 16;
 
 Target.weight2 = Ex_mask;%double(MASK);
 
-
 IniVar.target_OV90 = Target;
 
-load('/home/molin/shimm_nick/decompose_refocus/demo/ISMRM/compare/refocus_test/Check_nosense/slice_refoc.mat');
-%load('/home/molin/shimm_nick/decompose_refocus/demo/ISMRM/compare/refocus_test/Check_nosense/pulse2.mat');
-load('/home/molin/shimm_nick/decompose_refocus/demo/ISMRM/compare/refocus_test/selective/field_correct/pulse1.mat');
 
-load('/home/molin/shimm_nick/op_refoc/mrm_results/sagital/pulse1.mat')
 
-%RF1 = load('../../rf_185.mat'); % T = 6ms, B = 1.5kHz, bd = 300Hz
-%RF = RF1.rf2 * 7; %refocs * 7; % 50 % 7
-%RF1 = load('/home/molin/shimm_nick/decompose_refocus/demo/ISMRM/compare/refocus_test/Check_nosense/SLR_refocus.mat');
+%% % Load initialization. Gauss pulse.
 RF1 = load('/home/molin/shimm_nick/decompose_refocus/demo/ISMRM/compare/rf_gauss_false.mat');
 RF = RF1.rf_gau;
-%RF = RF1.refocs * 5;
-%RF = zeros(1, 500);
-
-%RF(1,1001:1500) = RF1;
-RF = rf;
-
-%non_linear = load('/home/molin/shimm_nick/Dynamic_resemble/demo/ISMRM/compare/current_onlybrain_soft_64coil.mat');
-%non_linear = non_linear.amps;matla
-%non_linear(:) = 0;
 non_linear = zeros(64,1);
 non_linear = repmat(non_linear, 1, size(RF,2));
-non_linear = gr(4:end, :);
-%non_linear = zeros(64, size(RF,2));
+
+%% % Load optimized RF
+% load('/home/molin/shimm_nick/op_refoc/mrm_results/sagital/pulse1.mat')
+% RF = rf;
+% non_linear = gr(4:end, :);
+
 
 kk = IniVar.pIni_OV90;
 
 kk.rf = RF;
 kk.nr = non_linear;
-kk.lr = zeros(3,size(RF,2)); %gr(1:3, :); %
-kk.lr(3,:) = 0.2;%0.7; %2 * 4.8933;%7242 / 160; %%%%%% lr(2,:) or lr(3,:)
-%kk.lr(2,1001:1500) = 0.001;
-%kk.lr = gr(1:3,:);
-kk.gr = [kk.lr; kk.nr]; %gr + 5 * rand(size(gr));%
+kk.lr = zeros(3,size(RF,2));
+kk.lr(3,:) = 0.2; % add linear gradient
+kk.gr = [kk.lr; kk.nr];
 kk.dt = 8e-6; %4e-6;
-kk.smax = 10000000000;
+kk.smax = 1.0;
 kk.rfmax = 1.0;
 IniVar.pIni_OV90 = kk;
-
-
 
 pAD = OV90(cube, cube1, cube2, IniVar.target_OV90, IniVar.pIni_OV90);
 
