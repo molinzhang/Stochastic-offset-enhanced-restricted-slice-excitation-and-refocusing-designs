@@ -32,6 +32,10 @@ For excitation, we propose a two-stage optimization strategy. please first use c
 
 For refocusing, please first use codes under folder `refocusing` to optimize RF pulse and shim current get desired refocusing magentization.
 
+### Dependencies.
+
+Use environment.yml to install required packages.
+
 ### Key features for usage.
 
 `excitation/adpulses_sgd` and `excitation/mrphy_sgd` are python packages. A simple way to install it is to move them under the anaconda enviroment, `~/anaconda3/envs/<your env name>/lib/<your python version>/site-packages/`. Same for `rewinding` and  `refocusing`.
