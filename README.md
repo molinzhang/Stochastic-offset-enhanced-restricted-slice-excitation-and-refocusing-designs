@@ -34,7 +34,11 @@ For refocusing, please first use codes under folder `refocusing` to optimize RF 
 
 ### Key features for usage.
 
-`excitation/adpulses_sgd` and `excitation/mrphy_sgd` are python packages. A simple way to install it is to move them under the anaconda enviroment, `~/anaconda3/envs/<your env name>/lib/<your python version>/site-packages/`.
+`excitation/adpulses_sgd` and `excitation/mrphy_sgd` are python packages. A simple way to install it is to move them under the anaconda enviroment, `~/anaconda3/envs/<your env name>/lib/<your python version>/site-packages/`. Same for `rewinding` and  `refocusing`.
+
+You could change `.requires_grad` for RF pulse and shim current to optimize the variables you want in `optimizer.py` under `adpulses`.
+
+If you want to used shim array fields, you have to load the array field maps (Hz/A) in `mrphy/beffective.py` within function `rfgr2beff`. 
 
 
 
