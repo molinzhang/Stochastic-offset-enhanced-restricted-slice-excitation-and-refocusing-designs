@@ -34,7 +34,7 @@ For refocusing, please first use codes under folder `refocusing` to optimize RF 
 
 ### Key features for usage.
 
-In `+mrphy/+beffective/rfgr2beff.m`, if you want to 
+`excitation/adpulses_sgd` and `excitation/mrphy_sgd` are python packages. A simple way to install it is to move them under the anaconda enviroment, `~/anaconda3/envs/<your env name>/lib/<your python version>/site-packages/`.
 
 
 
