@@ -4,6 +4,8 @@ This repository contains the official code for the MRM paper titled ["Stochastic
 
 The code in this repository is based on and extends the work presented in another MRM paper titled ["Selective RF excitation designs enabled by time‐varying spatially non‐linear ΔB0 fields with applications in fetal MRI."](https://onlinelibrary.wiley.com/doi/full/10.1002/mrm.29114) Please note that this repository is currently under construction.
 
+We are going to further clean up the code! Updated version is coming soon.
+
 ## About the Paper
 
 The main contributions of this paper are summarized into three key parts:
