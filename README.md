@@ -58,6 +58,9 @@ If you find this work helpful, please consider citing the following two papers:
   title={Stochastic-offset-enhanced restricted slice excitation and 180° refocusing designs with spatially non-linear $\Delta$B0 shim array fields},
   author={Zhang, Molin and Arango, Nicolas and Arefeen, Yamin and Guryev, Georgy and Stockmann, Jason P and White, Jacob and Adalsteinsson, Elfar},
   journal={Magnetic Resonance in Medicine},
+  volume={90},
+  number={6},
+  pages={2572--2591},
   year={2023},
   publisher={Wiley Online Library}
 }
